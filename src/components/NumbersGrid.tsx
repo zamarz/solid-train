@@ -1,28 +1,84 @@
+import { useEffect, useState } from "react";
+
 const NumbersGrid = () => {
+  const [calc, setCalc] = useState("");
+  const [result, setResult] = useState("");
+
+  const operators = ["/", "+", "-", "*", "."];
+
+  const createNumbers = () => {
+    const numbers = [];
+
+    for (let i = 1; i < 10; i++) {
+      numbers.push(
+        <button onClick={() => updateCalc(i.toString())} key={i}>
+          {i}
+        </button>
+      );
+    }
+    return numbers;
+  };
+
+  const updateCalc = (value: any) => {
+    if (
+      (operators.includes(value) && calc === "") ||
+      (operators.includes(value) && operators.includes(calc.slice(-1)))
+    ) {
+      return;
+    }
+    setCalc(calc + value);
+
+    if (!operators.includes(value)) {
+      setResult(eval(calc + value).toString());
+    }
+  };
+
+  const deleteItem = () => {
+    if (calc === "") {
+    }
+    const value = calc.slice(0, -1);
+    setCalc(value);
+    setResult(eval(value).toString());
+  };
+
+  const calculate = () => {
+    setCalc(eval(calc).toString());
+  };
+
   return (
     <div>
       <h2>Hello World!</h2>
-
       <div>
-        <button>0</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
+        <span>{result ? "(" + result + ")" : ""}</span> {calc || 0}
+      </div>
+      <div className="numbers">
+        {createNumbers()}
+        <button
+          onClick={() => {
+            updateCalc("0");
+          }}
+        >
+          0
+        </button>
+        <button
+          onClick={() => {
+            updateCalc(".");
+          }}
+        >
+          .
+        </button>
+      </div>
+      <div className="operators">
+        <button onClick={() => updateCalc("+")}>+</button>
+        <button onClick={() => updateCalc("-")}>-</button>
+        <button onClick={() => updateCalc("*")}>*</button>
+        <button onClick={() => updateCalc("/")}>/</button>
+        <button onClick={deleteItem}>Delete</button>
       </div>
       <div>
-        <button>+</button>
-        <button>-</button>
-        <button>*</button>
-        <button>/</button>
-      </div>
-      <div>
-        <button>Enter</button>
+        <button type="submit" onClick={calculate}>
+          =
+        </button>
       </div>
     </div>
   );
