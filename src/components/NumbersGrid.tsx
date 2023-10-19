@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const NumbersGrid = () => {
   const [calc, setCalc] = useState("");
@@ -19,7 +19,7 @@ const NumbersGrid = () => {
     return numbers;
   };
 
-  const updateCalc = (value: any) => {
+  const updateCalc = (value: string) => {
     if (
       (operators.includes(value) && calc === "") ||
       (operators.includes(value) && operators.includes(calc.slice(-1)))
@@ -39,6 +39,10 @@ const NumbersGrid = () => {
     const value = calc.slice(0, -1);
     setCalc(value);
     setResult(eval(value).toString());
+  };
+  const resetCalculator = () => {
+    setCalc("");
+    setResult("");
   };
 
   const calculate = () => {
@@ -74,6 +78,7 @@ const NumbersGrid = () => {
         <button onClick={() => updateCalc("*")}>*</button>
         <button onClick={() => updateCalc("/")}>/</button>
         <button onClick={deleteItem}>Delete</button>
+        <button onClick={resetCalculator}>Reset</button>
       </div>
       <div>
         <button type="submit" onClick={calculate}>
