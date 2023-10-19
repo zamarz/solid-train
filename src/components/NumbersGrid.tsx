@@ -50,7 +50,7 @@ const NumbersGrid = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App animate__animated animate__backInUp">
       <div className="calculator">
         <div className="display">
           <span>{result ? "(" + result + ")" : ""}</span> {calc || 0}
@@ -60,8 +60,8 @@ const NumbersGrid = () => {
           <button onClick={() => updateCalc("-")}>-</button>
           <button onClick={() => updateCalc("*")}>*</button>
           <button onClick={() => updateCalc("/")}>/</button>
-          <button onClick={deleteItem}>Delete</button>
-          <button onClick={resetCalculator}>Reset</button>
+          <button onClick={deleteItem}>DEL</button>
+          <button onClick={resetCalculator}>AC</button>
         </div>
         <div className="numbers">
           {createNumbers()}
