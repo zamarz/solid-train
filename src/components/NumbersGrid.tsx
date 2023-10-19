@@ -50,40 +50,43 @@ const NumbersGrid = () => {
   };
 
   return (
-    <div>
+    <div className="App">
       <h2>Hello World!</h2>
-      <div>
-        <span>{result ? "(" + result + ")" : ""}</span> {calc || 0}
-      </div>
-      <div className="numbers">
-        {createNumbers()}
-        <button
-          onClick={() => {
-            updateCalc("0");
-          }}
-        >
-          0
-        </button>
-        <button
-          onClick={() => {
-            updateCalc(".");
-          }}
-        >
-          .
-        </button>
-      </div>
-      <div className="operators">
-        <button onClick={() => updateCalc("+")}>+</button>
-        <button onClick={() => updateCalc("-")}>-</button>
-        <button onClick={() => updateCalc("*")}>*</button>
-        <button onClick={() => updateCalc("/")}>/</button>
-        <button onClick={deleteItem}>Delete</button>
-        <button onClick={resetCalculator}>Reset</button>
-      </div>
-      <div>
-        <button type="submit" onClick={calculate}>
-          =
-        </button>
+      <div className="calculator">
+        <div className="display">
+          <span>{result ? "(" + result + ")" : ""}</span> {calc || 0}
+        </div>
+        <div className="operators">
+          <button onClick={() => updateCalc("+")}>+</button>
+          <button onClick={() => updateCalc("-")}>-</button>
+          <button onClick={() => updateCalc("*")}>*</button>
+          <button onClick={() => updateCalc("/")}>/</button>
+          <button onClick={deleteItem}>Delete</button>
+          <button onClick={resetCalculator}>Reset</button>
+        </div>
+        <div className="numbers">
+          {createNumbers()}
+          <button
+            onClick={() => {
+              updateCalc("0");
+            }}
+          >
+            0
+          </button>
+          <button
+            onClick={() => {
+              updateCalc(".");
+            }}
+          >
+            .
+          </button>
+        </div>
+
+        <div>
+          <button type="submit" onClick={calculate}>
+            =
+          </button>
+        </div>
       </div>
     </div>
   );
