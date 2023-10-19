@@ -51,7 +51,6 @@ const NumbersGrid = () => {
 
   return (
     <div className="App">
-      <h2>Hello World!</h2>
       <div className="calculator">
         <div className="display">
           <span>{result ? "(" + result + ")" : ""}</span> {calc || 0}
@@ -80,9 +79,6 @@ const NumbersGrid = () => {
           >
             .
           </button>
-        </div>
-
-        <div>
           <button type="submit" onClick={calculate}>
             =
           </button>
